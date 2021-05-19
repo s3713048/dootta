@@ -1,3 +1,21 @@
+## About This Project
+This is a simple Fan site for Dota2. It's built as an assignment for RMIT's CloudComputing. It uses Laravel 6 PHP framrwork.
+
+## Developer Info
+s3713048@student.rmit.edu.au
+
+## Pages
+- Login Page
+- Profile Page
+- Dota2 Heros Page
+- Dota2 Players Page
+- TBA
+
+## Third Party APIs & Libraries
+The Dota2 data is all come from https://www.opendota.com/ through public APIs. This project uses AWS PHP Sdk to access AWS 
+services like S3 and DynamoDB. The rest are all built by the assignment group.
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
