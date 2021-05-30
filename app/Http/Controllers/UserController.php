@@ -6,6 +6,16 @@ use Illuminate\Http\Request;
 
 class UserController extends BaseController
 {
+
+    /**
+     * user profile
+     */
+    public function index() {
+
+        $user = $this->getUserInSession();
+        return view('user.profile', ['user' => $user]);
+    }
+
     /**
      * try login user
      */

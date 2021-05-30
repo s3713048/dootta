@@ -14,3 +14,25 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+// user profile
+Route::get('user/profile', 'UserController@index');
+
+// user authentication
+Route::get('user/login', function () {
+    return view('user.login');
+});
+Route::post('user/login', 'UserController@login');
+Route::get('user/logout', 'UserController@logout');
+
+// user creation
+Route::get('user/register', function () {
+    return view('user.register');
+});
+Route::post('user/register', 'UserController@register');
+
+// heros
+Route::get('/heros', 'HeroController@index');
+
+// players
+Route::get('/players', 'PlayerController@index');
