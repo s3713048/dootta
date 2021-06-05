@@ -33,7 +33,7 @@ Route::post('user/register', 'UserController@register');
 
 // hero
 Route::get('/heros', 'HeroController@index');
-Route::get('/heros/{heroId}', 'HeroController@detail');
+Route::post('/heros/detail', 'HeroController@detail');
 
 // players
 Route::get('/players', 'PlayerController@index');

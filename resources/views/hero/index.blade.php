@@ -20,8 +20,12 @@
                 @foreach ($heros as $hero)
                 <tr>
                     <th scope="row">
-                        <img style="height: 29px; margin-right: 7px;" src={{ 'https://api.opendota.com' . $hero['img'] }}/>
-                        <a class="button" href= {{ '/heros/' . $hero['id'] }}>{{ $hero['localized_name'] }}</a>
+                        <form method="POST" action="/heros/detail">
+                            <img style="height: 29px; margin-right: 7px;" src={{ 'https://api.opendota.com' . $hero['img'] }}/>
+                            @csrf
+                            <input class="visually-hidden" type="hidden" name="hero_data" id="hero_data" value={{ json_encode($hero) }}>
+                            <button class="btn btn-link" type="submit">{{ $hero['localized_name'] }}</button>                     
+                        </form>
                     </th>
                     <td>{{ $hero['pro_win'] }}</td>
                     <td>{{ $hero['pro_pick'] }}</td>

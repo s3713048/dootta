@@ -9,8 +9,8 @@ use SebastianBergmann\Environment\Console;
 class BaseController extends Controller
 {
     private $BASE_URL_OPEN_DOTA = 'https://api.opendota.com';
-    private $HEROS = '/api/heros';
     private $HERO_STATS = '/api/heroStats';
+    private $HERO_RANKINGS = '/api/rankings?hero_id=';
     private $PRO_PLAYERS = '/api/proPlayers';
     private $TEAM = '/api/teams/';
 
@@ -57,10 +57,19 @@ class BaseController extends Controller
     }
 
     /**
-     * get hero data from open dota api
+     * get hero's ranking data from open dota api
      */
-    protected function getHeroById($heroId) {
-        return [];
+    protected function getHeroRankingsById($heroId) {
+        $result = $this->request('GET', $this->HERO_RANKINGS . $heroId);
+        return json_decode($result, true);
+    }
+
+    /**
+     * get team data from open dota api
+     */
+    protected function getTeamData($teamId) {
+        $result = $this->request('GET', $this->TEAM . $teamId);
+        return json_decode($result, true);
     }
 
     /**
@@ -75,14 +84,6 @@ class BaseController extends Controller
      */
     protected function subscribeToHero($userId, $heroId, $shouldSubscribe) {
 
-    }
-
-    /**
-     * get team data from open dota api
-     */
-    protected function getTeamData($teamId) {
-        $result = $this->request('GET', $this->TEAM . $teamId);
-        return json_decode($result, true);
     }
 
     /**

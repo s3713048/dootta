@@ -13,8 +13,10 @@ class HeroController extends BaseController
      */
     public function index() {
 
+        // get heros data
         $heros = $this->getHerosTableData();
         
+        // get user's subscription data
         $user = $this->getUserInSession();
         $isLogin = !empty($user);
         if ($isLogin) {
@@ -33,8 +35,16 @@ class HeroController extends BaseController
     /**
      * hero's details
      */
-    public function detail($heroId) {
+    public function detail(Request $request) {
 
-        return view('heor.detail', []);
+        $hero = json_decode($request->hero_data, true);
+        $hero['roles'] = implode(", ", $hero['roles']);
+
+        $rankings = $this->getHeroRankingsById($hero['id']);
+
+        return view('hero.detail', [
+            'hero' => $hero,
+            'rankings' => $rankings['rankings']
+        ]);
     }
 }
