@@ -12,6 +12,7 @@ class BaseController extends Controller
     private $HEROS = '/api/heros';
     private $HERO_STATS = '/api/heroStats';
     private $PRO_PLAYERS = '/api/proPlayers';
+    private $TEAM = '/api/teams/';
 
     /**
      * pull heros data from open dota api and save to database
@@ -52,8 +53,7 @@ class BaseController extends Controller
      */
     protected function getProPlayerTableData() {
         $result = $this->request('GET', $this->PRO_PLAYERS);
-        Log::debug('GetProPlayers result: ' . $result);
-        return $result;
+        return json_decode($result, true);
     }
 
     /**
@@ -67,7 +67,6 @@ class BaseController extends Controller
      * get subscription with given user id
      */
     protected function getSubscriptions($userId) {
-
         return [];
     }
 
@@ -76,6 +75,14 @@ class BaseController extends Controller
      */
     protected function subscribeToHero($userId, $heroId, $shouldSubscribe) {
 
+    }
+
+    /**
+     * get team data from open dota api
+     */
+    protected function getTeamData($teamId) {
+        $result = $this->request('GET', $this->TEAM . $teamId);
+        return json_decode($result, true);
     }
 
     /**

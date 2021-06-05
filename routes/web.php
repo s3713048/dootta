@@ -37,3 +37,4 @@ Route::get('/heros/{heroId}', 'HeroController@detail');
 
 // players
 Route::get('/players', 'PlayerController@index');
+Route::get('/teams/{teamId}', 'PlayerController@team');
