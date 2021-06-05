@@ -12,6 +12,7 @@
         "aws/aws-sdk-php": "^3.183",
         "aws/aws-sdk-php-laravel": "^3.6",
         "fideloper/proxy": "^4.4",
+        "guzzlehttp/guzzle": "^7.0",
         "laravel/framework": "^6.20.26",
         "laravel/tinker": "^2.5",
         "league/flysystem-aws-s3-v3": "~1.0",

@@ -31,8 +31,9 @@ Route::get('user/register', function () {
 });
 Route::post('user/register', 'UserController@register');
 
-// heros
+// hero
 Route::get('/heros', 'HeroController@index');
+Route::get('/heros/{heroId}', 'HeroController@detail');
 
 // players
 Route::get('/players', 'PlayerController@index');

@@ -14,10 +14,11 @@ class CreateSubscriptionsTable extends Migration
     public function up()
     {
         Schema::create('subscriptions', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('dt_user_id');
-            $table->unsignedBigInteger('hero_id');
             $table->foreign('dt_user_id')->references('id')->on('dt_users');
-            $table->foreign('hero_id')->references('id')->on('heros');
+            // hero id from open dota api
+            $table->unsignedInteger('hero_id');
             $table->timestamps();
         });
     }

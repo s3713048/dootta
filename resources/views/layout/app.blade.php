@@ -68,10 +68,10 @@
                     <div class="collapse navbar-collapse" id="navbarsExample02">
                         <ul class="navbar-nav me-auto">
                             <li class="nav-item">
-                                <a class="nav-link active" href="/music">Heros</a>
+                                <a class="nav-link active" href="/heros">Heros</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" href="/init">Players</a>
+                                <a class="nav-link active" href="/players">Players</a>
                             </li>
                         </ul>
 
