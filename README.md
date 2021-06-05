@@ -5,11 +5,12 @@ This is a simple Fan site for Dota2. It's built as an assignment for RMIT's Clou
 s3713048@student.rmit.edu.au
 
 ## Pages
+- Landing Page
 - Login Page
 - Profile Page
 - Dota2 Heros Page
 - Dota2 Players Page
-- TBA
+- Dota2 Team & Recent Matches Page
 
 ## Third Party APIs & Libraries
 The Dota2 data is all come from https://www.opendota.com/ through public APIs. This project uses AWS PHP Sdk to access AWS 
