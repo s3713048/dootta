@@ -73,6 +73,14 @@ class BaseController extends Controller
     }
 
     /**
+     * get team matches data from open dota api
+     */
+    protected function getTeamMatchesData($teamId) {
+        $result = $this->request('GET', $this->TEAM . $teamId . '/matches');
+        return json_decode($result, true);
+    }
+
+    /**
      * get subscription with given user id
      */
     protected function getSubscriptions($userId) {
