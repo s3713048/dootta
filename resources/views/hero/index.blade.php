@@ -12,7 +12,7 @@
                     <th scope="col">Picks (last 30 days)</th>
                     <th scope="col">Bans (last 30 days)</th>
                     @if ($showSub)
-                        <th scope="col"></th>
+                        <th scope="col">Subscription</th>
                     @endif
                 </tr>
             </thead>
@@ -31,7 +31,15 @@
                     <td>{{ $hero['pro_pick'] }}</td>
                     <td>{{ $hero['pro_ban'] }}</td>
                     @if ($showSub)
-                        <td>{{ $hero['subscribed'] }}</td>
+                        <td>
+                            <a class="nav-link active" href={{ '/heros/subscribe/' . $hero['id'] }}>
+                            @if ($hero['subscribed'])
+                                Unsubscribe
+                            @else
+                                Subscribe
+                            @endif
+                            </a>
+                        </td>
                     @endif
                 </tr>
                 @endforeach

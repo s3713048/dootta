@@ -7,7 +7,7 @@ s3713048@student.rmit.edu.au
 ## Pages
 - Landing Page
 - Login Page
-- Profile Page
+- Register Page
 - Dota2 Heros Page
 - Dota2 Players Page
 - Dota2 Team & Recent Matches Page

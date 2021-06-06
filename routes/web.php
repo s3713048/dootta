@@ -15,9 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// user profile
-Route::get('user/profile', 'UserController@index');
-
 // user authentication
 Route::get('user/login', function () {
     return view('user.login');
@@ -33,6 +30,7 @@ Route::post('user/register', 'UserController@register');
 
 // hero
 Route::get('/heros', 'HeroController@index');
+Route::get('/heros/subscribe/{heroId}', 'HeroController@subscribe');
 Route::post('/heros/detail', 'HeroController@detail');
 
 // players

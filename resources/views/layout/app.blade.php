@@ -79,17 +79,20 @@
                             $currentUser = session('current_user');
                         @endphp
 
-                        @if (! empty($currentUser))
                         <ul class="navbar-nav d-flex">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="/logout">Logout</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" href="/">{{ $currentUser['user_name'] }}</a>
-                            </li>
+                            @if (! empty($currentUser))
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="/user/logout">Logout</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="/">{{ $currentUser['user_name'] }}</a>
+                                </li>
+                            @else
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="/user/login">Login</a>
+                                </li>
+                            @endif
                         </ul>
-                        @endif
-
                     </div>
                 </div>
             </nav>

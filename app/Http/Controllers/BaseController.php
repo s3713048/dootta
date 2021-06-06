@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use GuzzleHttp\Client;
-use Illuminate\Support\Facades\Log;
-use SebastianBergmann\Environment\Console;
+use Illuminate\Support\Arr;
+use App\DtUser;
+use App\Subscription;
 
 class BaseController extends Controller
 {
@@ -13,6 +14,27 @@ class BaseController extends Controller
     private $HERO_RANKINGS = '/api/rankings?hero_id=';
     private $PRO_PLAYERS = '/api/proPlayers';
     private $TEAM = '/api/teams/';
+
+    /**
+     * get user by email from database
+     */
+    protected function getUserByEmail($email) {
+        return DtUser::firstWhere('email', $email);
+    }
+
+    /**
+     * create a new user in database
+     */
+    protected function createUser($email, $user_name, $password) {
+
+        $user = new DtUser;
+        $user->email = $email;
+        $user->user_name = $user_name;
+        $user->password = $password;
+        $user->save();
+
+        return $user;
+    }
 
     /**
      * pull heros data from open dota api and save to database
@@ -84,14 +106,40 @@ class BaseController extends Controller
      * get subscription with given user id
      */
     protected function getSubscriptions($userId) {
-        return [];
+
+        $user = DtUser::find($userId);
+        $subs = $user->subscriptions;
+
+        $subscription = [];
+        foreach ($subs as $sub) {
+            array_push($subscription, $sub->hero_id);
+        }
+
+        return $subscription;
     }
 
     /**
      * subscribe/unsubscribe to hero
      */
-    protected function subscribeToHero($userId, $heroId, $shouldSubscribe) {
+    protected function subscribeToHero($userId, $heroId) {
 
+        $subscription = Subscription::where([
+            ['dt_user_id', '=', $userId],
+            ['hero_id', '=', $heroId]
+        ])->first();
+
+        // not subscribed
+        if (empty($subscription)) {
+
+            $subscription = new Subscription;
+            $subscription->dt_user_id = $userId;
+            $subscription->hero_id = $heroId;
+            $subscription->save();
+        } 
+        // subscribed
+        else {
+            $subscription->delete();
+        }
     }
 
     /**

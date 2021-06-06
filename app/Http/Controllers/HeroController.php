@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Subscription;
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
 
 class HeroController extends BaseController
 {
@@ -20,9 +20,9 @@ class HeroController extends BaseController
         $user = $this->getUserInSession();
         $isLogin = !empty($user);
         if ($isLogin) {
-            $subs = $this->getSubscriptions($user->id);
-            foreach ($heros as $hero) {
-                $hero['subscribed'] = Arr::has($subs, $hero['id']);
+            $subs = $this->getSubscriptions($user['id']);
+            foreach ($heros as &$hero) {
+                $hero['subscribed'] = in_array($hero['id'], $subs);
             }
         }
 
@@ -30,6 +30,21 @@ class HeroController extends BaseController
             'showSub' => $isLogin,
             'heros' => $heros
         ]);
+    }
+
+    /**
+     * subscribe/unsubscribe to given hero
+     */
+    public function subscribe($heroId) {
+
+        $user = $this->getUserInSession();
+        if (empty($user)) {
+            return redirect()->to('/user/login');
+        }
+
+        $userId = $user['id'];
+        $this->subscribeToHero($userId, $heroId);
+        return redirect()->to('/heros');
     }
 
     /**
